@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import Error from './Error';
 
-const Question = ({ saveBudget, setBalance }) => {
+const Question = ({ saveBudget, setBalance, updateQuestion }) => {
     //State
     const [quantity, setQuanqtity] = useState(0);
     const [error, setError] = useState(false);
@@ -24,9 +24,13 @@ const Question = ({ saveBudget, setBalance }) => {
         setError(false);
         saveBudget(quantity);
         setBalance(quantity);
+        updateQuestion(false);
 
     }
     return (
+
+        
+        
         <Fragment>
             <h2>Add your budget</h2>
             {error ? <Error message="Is not a valid budget" /> : null}
