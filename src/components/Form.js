@@ -1,10 +1,43 @@
 import React, { useState } from 'react';
+import Error from './Error';
 
 
 const Form = () => {
+    const [reference, saveReference] = useState('');
+    const [amount, saveAmount] = useState(0);
+    const [error, setError] = useState(false);
+
+
+    // submit function
+    const addExpense = e =>{
+        e.preventDefault();
+
+        //validate form
+        if(reference.trim() === '' || amount < 1 || isNaN(amount)){
+            setError(true);
+            return;
+        }
+        setError(false);
+        //build object
+
+        //send expense to app component
+
+
+        //reset form
+
+    }
     return (
-        <form>
+
+        
+        
+        <form
+        
+            onSubmit={addExpense}
+        >
             <h2>Add your expenses here</h2>
+
+            {error ? <Error message="Both inputs are rquired or wrong expense" /> : null}
+
 
             <div className="campo">
                 <label>Expenses</label>
@@ -12,6 +45,8 @@ const Form = () => {
                     type="text"
                     className="u-full-width"
                     placeholder="Ex. Transport"
+                    value={reference}
+                    onChange={e=>saveReference(e.target.value)}
                 />
             </div>
 
@@ -21,6 +56,8 @@ const Form = () => {
                     type="number"
                     className="u-full-width"
                     placeholder="Ex. 1000"
+                    value={amount}
+                    onChange={e=>saveAmount(parseInt(e.target.value))}
                 />
             </div>
 
@@ -28,6 +65,7 @@ const Form = () => {
                 type="submit"
                 className="button-primary u-full-width"
                 value="Add expense"
+                
             />
         </form>
 

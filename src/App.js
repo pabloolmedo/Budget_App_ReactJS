@@ -8,6 +8,9 @@ function App() {
   const [budget, saveBudget] = useState(0);
   const [balance, setBalance] = useState(0);
   const [showquestion, updateQuestion] = useState(true);
+  
+
+  
   return (
     <div className="container">
       <header>
@@ -27,7 +30,7 @@ function App() {
               <div className="row">
                 <div className="one-half column">
                   <Form
-
+                    
                   />
                 </div>
                 <div className="one-half column">
