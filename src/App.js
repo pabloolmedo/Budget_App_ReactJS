@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Question from './components/Question';
 import Form from './components/Form';
+import List from './components/List';
 
 
 function App() {
@@ -8,6 +9,15 @@ function App() {
   const [budget, saveBudget] = useState(0);
   const [balance, setBalance] = useState(0);
   const [showquestion, updateQuestion] = useState(true);
+  const [outlay, setOutlay] = useState([]);
+
+  //executed when add a new outlay
+  const addNewOutlay = (expense)=>{
+    setOutlay([
+      ...outlay,
+      expense
+    ]);
+  }
   
 
   
@@ -30,11 +40,13 @@ function App() {
               <div className="row">
                 <div className="one-half column">
                   <Form
-                    
+                    addNewOutlay={addNewOutlay}
                   />
                 </div>
                 <div className="one-half column">
-                  2
+                  <List 
+                  outlay={outlay}
+                  />
               </div>
               </div>
             )}

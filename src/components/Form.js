@@ -3,7 +3,7 @@ import Error from './Error';
 import shortid from 'shortid';
 
 
-const Form = () => {
+const Form = ({addNewOutlay}) => {
     const [reference, saveReference] = useState('');
     const [amount, saveAmount] = useState(0);
     const [error, setError] = useState(false);
@@ -19,17 +19,19 @@ const Form = () => {
             return;
         }
         setError(false);
-        //build object
+        //build object  
         const expense = {
             reference,
             amount,
             id: shortid.generate()
         }
-         console.log(expense);
+         
         //send expense to app component
-
+        addNewOutlay(expense);
 
         //reset form
+        saveReference('');
+        saveAmount(0);
 
     }
     return (
@@ -63,7 +65,7 @@ const Form = () => {
                     className="u-full-width"
                     placeholder="Ex. 1000"
                     value={amount}
-                    onChange={e=>saveAmount(parseInt(e.target.value))}
+                    onChange={e=>saveAmount(parseInt(e.target.value) || amount)}
                 />
             </div>
 
