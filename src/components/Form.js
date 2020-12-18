@@ -3,18 +3,18 @@ import Error from './Error';
 import shortid from 'shortid';
 
 
-const Form = ({addNewOutlay}) => {
+const Form = ({ setExpense, setCreateExpense }) => {
     const [reference, saveReference] = useState('');
     const [amount, saveAmount] = useState(0);
     const [error, setError] = useState(false);
 
 
     // submit function
-    const addExpense = e =>{
+    const addExpense = e => {
         e.preventDefault();
 
         //validate form
-        if(reference.trim() === '' || amount < 1 || isNaN(amount)){
+        if (reference.trim() === '' || amount < 1 || isNaN(amount)) {
             setError(true);
             return;
         }
@@ -25,9 +25,10 @@ const Form = ({addNewOutlay}) => {
             amount,
             id: shortid.generate()
         }
-         
+
         //send expense to app component
-        addNewOutlay(expense);
+        setExpense(expense);
+        setCreateExpense(true);
 
         //reset form
         saveReference('');
@@ -36,10 +37,10 @@ const Form = ({addNewOutlay}) => {
     }
     return (
 
-        
-        
+
+
         <form
-        
+
             onSubmit={addExpense}
         >
             <h2>Add your expenses here</h2>
@@ -54,7 +55,7 @@ const Form = ({addNewOutlay}) => {
                     className="u-full-width"
                     placeholder="Ex. Transport"
                     value={reference}
-                    onChange={e=>saveReference(e.target.value)}
+                    onChange={e => saveReference(e.target.value)}
                 />
             </div>
 
@@ -65,7 +66,7 @@ const Form = ({addNewOutlay}) => {
                     className="u-full-width"
                     placeholder="Ex. 1000"
                     value={amount}
-                    onChange={e=>saveAmount(parseInt(e.target.value) || amount)}
+                    onChange={e => saveAmount(parseInt(e.target.value) || amount)}
                 />
             </div>
 
@@ -73,7 +74,7 @@ const Form = ({addNewOutlay}) => {
                 type="submit"
                 className="button-primary u-full-width"
                 value="Add expense"
-                
+
             />
         </form>
 
