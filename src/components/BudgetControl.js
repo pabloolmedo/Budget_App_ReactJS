@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { checkBudget } from '../helpers';
 
 
 const BudgetControl = ({budget, balance}) => {
@@ -7,7 +8,7 @@ const BudgetControl = ({budget, balance}) => {
             <div className="alert alert-primary">
                 Budget:${budget}
             </div>
-            <div className="alert">
+            <div className={checkBudget(budget, balance)}>
                 Balance:${balance}
             </div>
         </Fragment>

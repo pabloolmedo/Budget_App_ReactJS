@@ -30,7 +30,7 @@ function App() {
       //reset
       setCreateExpense(false);
     }
-  }, [expense])
+  }, [expense, createExpense, outlay, balance])
 
 
 
