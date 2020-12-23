@@ -1,5 +1,6 @@
 import React from 'react';
 import Expense from './Expense';
+import PropTypes from 'prop-types';
 
 const List = ({outlay}) => {
     return (  
@@ -15,5 +16,10 @@ const List = ({outlay}) => {
         </div>
     );
 }
+
+List.propTypes = {
+    outlay: PropTypes.array.isRequired
+}
  
 export default List;
+
